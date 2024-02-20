@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/trender_s.dir/src/main.cpp.o CMakeFiles/trender_s.dir/src/render.cpp.o CMakeFiles/trender_s.dir/src/model.cpp.o CMakeFiles/trender_s.dir/src/tgaimage.cpp.o -o trender_s 

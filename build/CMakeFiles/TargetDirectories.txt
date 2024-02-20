@@ -1,0 +1,3 @@
+/home/oracle/Projects/cpp_course/trend_s/build/CMakeFiles/trender_s.dir
+/home/oracle/Projects/cpp_course/trend_s/build/CMakeFiles/edit_cache.dir
+/home/oracle/Projects/cpp_course/trend_s/build/CMakeFiles/rebuild_cache.dir
