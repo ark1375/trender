@@ -179,6 +179,59 @@ CMakeFiles/trender_s.dir/src/main.cpp.o
  /usr/include/c++/11/bits/ostream.tcc
  /usr/include/c++/11/istream
  /usr/include/c++/11/bits/istream.tcc
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Matrix.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Defines.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Math.h
+ /usr/include/c++/11/math.h
+ /usr/include/c++/11/cmath
+ /usr/include/math.h
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h
+ /usr/include/c++/11/stdlib.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Util/Assert.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Util/StaticAssert.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/MatrixOps.h
+ /usr/include/c++/11/algorithm
+ /usr/include/c++/11/utility
+ /usr/include/c++/11/bits/stl_relops.h
+ /usr/include/c++/11/bits/stl_algo.h
+ /usr/include/c++/11/bits/algorithmfwd.h
+ /usr/include/c++/11/bits/stl_heap.h
+ /usr/include/c++/11/bits/stl_tempbuf.h
+ /usr/include/c++/11/bits/uniform_int_dist.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Matrix.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Vec.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Config.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/VecBase.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Util/Meta.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Helpers.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/VecOps.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/VecOpsMeta.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/VecExprMeta.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Output.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Quat.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Tri.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Point.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Plane.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Sphere.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/EulerAngle.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/AABox.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Ray.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/LineSeg.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Coord.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/AxisAngle.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Vec.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/VecOps.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Xforms.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/MatrixOps.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/QuatOps.h
 
 CMakeFiles/trender_s.dir/src/model.cpp.o
  /home/oracle/Projects/cpp_course/trend_s/src/model.cpp

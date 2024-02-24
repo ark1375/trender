@@ -177,7 +177,60 @@ CMakeFiles/trender_s.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/basic_ios.tcc \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc
+  /usr/include/c++/11/bits/istream.tcc \
+  ../lib/gmtl/Matrix.h \
+  ../lib/gmtl/Defines.h \
+  ../lib/gmtl/Math.h \
+  /usr/include/c++/11/math.h \
+  /usr/include/c++/11/cmath \
+  /usr/include/math.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+  /usr/include/c++/11/stdlib.h \
+  ../lib/gmtl/Util/Assert.h \
+  ../lib/gmtl/Util/StaticAssert.h \
+  ../lib/gmtl/MatrixOps.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  ../lib/gmtl/Matrix.h \
+  ../lib/gmtl/Vec.h \
+  ../lib/gmtl/Config.h \
+  ../lib/gmtl/VecBase.h \
+  ../lib/gmtl/Util/Meta.h \
+  ../lib/gmtl/Helpers.h \
+  ../lib/gmtl/VecOps.h \
+  ../lib/gmtl/VecOpsMeta.h \
+  ../lib/gmtl/VecExprMeta.h \
+  ../lib/gmtl/Output.h \
+  ../lib/gmtl/Quat.h \
+  ../lib/gmtl/Tri.h \
+  ../lib/gmtl/Point.h \
+  ../lib/gmtl/Plane.h \
+  ../lib/gmtl/Sphere.h \
+  ../lib/gmtl/EulerAngle.h \
+  ../lib/gmtl/AABox.h \
+  ../lib/gmtl/Ray.h \
+  ../lib/gmtl/LineSeg.h \
+  ../lib/gmtl/Coord.h \
+  ../lib/gmtl/AxisAngle.h \
+  ../lib/gmtl/Vec.h \
+  ../lib/gmtl/VecOps.h \
+  ../lib/gmtl/Xforms.h \
+  ../lib/gmtl/MatrixOps.h \
+  ../lib/gmtl/QuatOps.h
 
 CMakeFiles/trender_s.dir/src/model.cpp.o: ../src/model.cpp \
   /usr/include/stdc-predef.h \
@@ -433,20 +486,6 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
   ../src/tgaimage.h
 
 
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
-
-/usr/include/x86_64-linux-gnu/bits/math-vector.h:
-
-/usr/include/math.h:
-
 /usr/include/string.h:
 
 /usr/include/c++/11/bits/fstream.tcc:
@@ -454,8 +493,6 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
-
-/usr/include/c++/11/bits/stl_relops.h:
 
 /usr/include/c++/11/array:
 
@@ -466,6 +503,56 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
 /usr/include/c++/11/vector:
+
+../lib/gmtl/QuatOps.h:
+
+../lib/gmtl/LineSeg.h:
+
+../lib/gmtl/Plane.h:
+
+../lib/gmtl/Point.h:
+
+../lib/gmtl/Tri.h:
+
+../lib/gmtl/Quat.h:
+
+../lib/gmtl/Output.h:
+
+../lib/gmtl/Xforms.h:
+
+../lib/gmtl/VecOps.h:
+
+../lib/gmtl/Util/Meta.h:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/bits/algorithmfwd.h:
+
+/usr/include/c++/11/bits/stl_relops.h:
+
+../lib/gmtl/Util/Assert.h:
+
+/usr/include/c++/11/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/math.h:
+
+../lib/gmtl/Defines.h:
+
+../lib/gmtl/Matrix.h:
 
 /usr/include/c++/11/bits/istream.tcc:
 
@@ -479,15 +566,21 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/c++/11/bits/streambuf_iterator.h:
 
+../lib/gmtl/AABox.h:
+
 /usr/include/c++/11/cwctype:
 
 /usr/include/c++/11/bits/locale_facets.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
 
+../lib/gmtl/Ray.h:
+
 /usr/include/c++/11/bits/streambuf.tcc:
 
 /usr/include/c++/11/stdexcept:
+
+../lib/gmtl/Math.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
@@ -500,6 +593,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 /usr/include/c++/11/bits/locale_classes.tcc:
 
 /usr/include/c++/11/bits/basic_string.tcc:
+
+../lib/gmtl/Vec.h:
 
 /usr/include/c++/11/bits/functional_hash.h:
 
@@ -555,9 +650,13 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
 
+../lib/gmtl/Helpers.h:
+
 /usr/include/ctype.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+
+../lib/gmtl/MatrixOps.h:
 
 /usr/include/c++/11/initializer_list:
 
@@ -603,9 +702,13 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
+/usr/include/c++/11/bits/stl_tempbuf.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+../lib/gmtl/AxisAngle.h:
 
 /usr/include/c++/11/bits/nested_exception.h:
 
@@ -647,6 +750,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/c++/11/ios:
 
+../lib/gmtl/VecExprMeta.h:
+
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/11/bits/char_traits.h:
@@ -663,6 +768,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/c++/11/ext/numeric_traits.h:
 
+../lib/gmtl/Util/StaticAssert.h:
+
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
@@ -675,11 +782,17 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/c++/11/bits/stl_function.h:
 
+../lib/gmtl/Config.h:
+
 /usr/include/stdc-predef.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+../lib/gmtl/EulerAngle.h:
+
+../lib/gmtl/VecBase.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
@@ -727,6 +840,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/c++/11/string:
 
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/wchar.h:
@@ -745,6 +860,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
+../lib/gmtl/Coord.h:
+
 /usr/include/c++/11/bits/move.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
@@ -755,6 +872,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
+../lib/gmtl/Sphere.h:
+
 /usr/include/c++/11/cctype:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
@@ -762,6 +881,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/c++/11/bits/localefwd.h:
+
+../lib/gmtl/VecOpsMeta.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
@@ -826,6 +947,8 @@ CMakeFiles/trender_s.dir/src/tgaimage.cpp.o: ../src/tgaimage.cpp \
 /usr/include/c++/11/cmath:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
+
+/usr/include/c++/11/algorithm:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
