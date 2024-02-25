@@ -131,6 +131,9 @@ void Model::parsefaces(std::stringstream&& sf){
             );
         Model::model_faces.push_back(tri);
     }
+
+    Model::model_vertecies.clear();
+    
 }
 
 void Model::normalize(bool midpointzero = true){
@@ -159,6 +162,18 @@ void Model::normalize(bool midpointzero = true){
 
 }
 
-void Model::translate(gmtl::Vec3f){}
+void Model::translate(gmtl::Vec3f tvec){
 
-void Model::transform(gmtl::Matrix33f){}    
+    for (gmtl::Trif& tri : Model::model_faces)
+        for (gmtl::Point3f point : tri.mVerts)
+            point += tvec;
+
+}
+
+void Model::transform(gmtl::Matrix33f tmat){
+
+    for (gmtl::Trif& tri : Model::model_faces)
+        for (gmtl::Point3f point : tri.mVerts)
+            gmtl::xform(point , tmat, point);
+
+}     
