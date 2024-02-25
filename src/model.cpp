@@ -10,6 +10,8 @@
 #include "../lib/gmtl/VecOps.h"
 #include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/TriOps.h"
+#include "../lib/gmtl/Output.h"
+#include <iostream>
 
 constexpr float MAX_FLOAT = std::numeric_limits<float>::max();
 constexpr float MIN_FLOAT = std::numeric_limits<float>::min();
@@ -122,17 +124,10 @@ void Model::parsefaces(std::stringstream&& sf){
             if (ch == ' ')
                 is_end_num_reached = false;
         }
+        
+        Model::model_faces.push_back(points);
 
-        gmtl::Trif tri;
-        tri.set(
-            Model::model_vertecies[points[0] - 1],
-            Model::model_vertecies[points[1] - 1],
-            Model::model_vertecies[points[2] - 1]
-            );
-        Model::model_faces.push_back(tri);
     }
-
-    Model::model_vertecies.clear();
 
 }
 
@@ -154,33 +149,25 @@ void Model::normalize(bool midpointzero = true){
 
     gmtl::Point3f normalizer = Model::maxpoint - Model::minpoint;
 
-    for(gmtl::Trif& tri : Model::model_faces){
-        for(gmtl::Point3f &point : tri.mVerts){
-            point -= trans_vec;
-            point[0] = point[0] / normalizer[0];
-            point[1] = point[1] / normalizer[1];
-            point[2] = point[2] / normalizer[2];
-        }
+    for(gmtl::Point3f &point : Model::model_vertecies){
+        point -= trans_vec;
+        point[0] = point[0] / normalizer[0];
+        point[1] = point[1] / normalizer[1];
+        point[2] = point[2] / normalizer[2];
     }
 
 }
 
 void Model::translate(gmtl::Vec3f tvec){
 
-    for (gmtl::Trif& tri : Model::model_faces)
-        for (gmtl::Point3f point : tri.mVerts)
-            point += tvec;
+    for (gmtl::Point3f &point : Model::model_vertecies)
+        point += tvec;
 
 }
 
 void Model::transform(gmtl::Matrix33f tmat){
 
-    for (gmtl::Trif& tri : Model::model_faces)
-        for (gmtl::Point3f point : tri.mVerts)
+    for (gmtl::Point3f &point : Model::model_vertecies)
             gmtl::xform(point , tmat, point);
 
 }
-
-const std::vector<gmtl::Trif>& Model::getmodel() const{
-    return Model::model_faces;
-} 

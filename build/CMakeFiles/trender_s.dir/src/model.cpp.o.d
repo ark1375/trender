@@ -258,4 +258,8 @@ CMakeFiles/trender_s.dir/src/model.cpp.o: \
  /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Coord.h \
  /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/AxisAngle.h \
  /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/EulerAngle.h \
- /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Xforms.h
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Xforms.h \
+ /home/oracle/Projects/cpp_course/trend_s/src/../lib/gmtl/Output.h \
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Plane.h \
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/Sphere.h \
+ /home/oracle/Projects/cpp_course/trend_s/lib/gmtl/AABox.h

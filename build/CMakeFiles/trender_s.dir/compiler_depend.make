@@ -571,7 +571,11 @@ CMakeFiles/trender_s.dir/src/model.cpp.o: ../src/model.cpp \
   ../lib/gmtl/Coord.h \
   ../lib/gmtl/AxisAngle.h \
   ../lib/gmtl/EulerAngle.h \
-  ../lib/gmtl/Xforms.h
+  ../lib/gmtl/Xforms.h \
+  ../lib/gmtl/Output.h \
+  ../lib/gmtl/Plane.h \
+  ../lib/gmtl/Sphere.h \
+  ../lib/gmtl/AABox.h
 
 CMakeFiles/trender_s.dir/src/render.cpp.o: ../src/render.cpp \
   /usr/include/stdc-predef.h
