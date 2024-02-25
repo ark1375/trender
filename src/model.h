@@ -34,8 +34,11 @@ public:
     void transform(gmtl::Matrix33f);
     void normalize(bool);
     
+    const std::vector<gmtl::Trif>& getmodel() const;
+
     void operator=(Model&) = delete;
     void operator=(Model&&) = delete;
+
 
     
 };

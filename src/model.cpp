@@ -133,7 +133,7 @@ void Model::parsefaces(std::stringstream&& sf){
     }
 
     Model::model_vertecies.clear();
-    
+
 }
 
 void Model::normalize(bool midpointzero = true){
@@ -143,7 +143,7 @@ void Model::normalize(bool midpointzero = true){
 
     if (midpointzero){
         trans_vec = (Model::maxpoint - Model::minpoint);
-        trans_vec /= 2;
+        trans_vec /= 2.0;
     }
 
     else
@@ -152,11 +152,14 @@ void Model::normalize(bool midpointzero = true){
     Model::maxpoint -= trans_vec;
     Model::minpoint -= trans_vec;
 
+    gmtl::Point3f normalizer = Model::maxpoint - Model::minpoint;
+
     for(gmtl::Trif& tri : Model::model_faces){
         for(gmtl::Point3f &point : tri.mVerts){
             point -= trans_vec;
-            point /= Model::maxpoint - Model::minpoint;
-
+            point[0] = point[0] / normalizer[0];
+            point[1] = point[1] / normalizer[1];
+            point[2] = point[2] / normalizer[2];
         }
     }
 
@@ -176,4 +179,8 @@ void Model::transform(gmtl::Matrix33f tmat){
         for (gmtl::Point3f point : tri.mVerts)
             gmtl::xform(point , tmat, point);
 
-}     
+}
+
+const std::vector<gmtl::Trif>& Model::getmodel() const{
+    return Model::model_faces;
+} 
