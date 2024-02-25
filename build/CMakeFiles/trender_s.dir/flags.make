@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/oracle/Projects/cpp_course/trend_s/lib -I/home/oracle/Projects/cpp_course/trend_s/src
 
-CXX_FLAGS = -std=gnu++11
+CXX_FLAGS = -std=gnu++23
 
