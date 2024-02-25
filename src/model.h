@@ -32,7 +32,7 @@ public:
     bool readmodel();
     void translate(gmtl::Vec3f);
     void transform(gmtl::Matrix33f);
-    void normalize();
+    void normalize(bool);
     
     void operator=(Model&) = delete;
     void operator=(Model&&) = delete;

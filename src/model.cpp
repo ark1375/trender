@@ -6,8 +6,11 @@
 #include <sstream>
 #include <fstream>
 #include <limits>
-
+#include "../lib/gmtl/Xforms.h"
+#include "../lib/gmtl/VecOps.h"
 #include "../lib/gmtl/Point.h"
+#include "../lib/gmtl/TriOps.h"
+
 constexpr float MAX_FLOAT = std::numeric_limits<float>::max();
 constexpr float MIN_FLOAT = std::numeric_limits<float>::min();
 
@@ -130,7 +133,31 @@ void Model::parsefaces(std::stringstream&& sf){
     }
 }
 
-void Model::normalize(){}
+void Model::normalize(bool midpointzero = true){
+
+    Model::origin.set(0,0,0);
+    gmtl::Vec3f trans_vec;
+
+    if (midpointzero){
+        trans_vec = (Model::maxpoint - Model::minpoint);
+        trans_vec /= 2;
+    }
+
+    else
+        trans_vec = Model::minpoint;
+
+    Model::maxpoint -= trans_vec;
+    Model::minpoint -= trans_vec;
+
+    for(gmtl::Trif& tri : Model::model_faces){
+        for(gmtl::Point3f &point : tri.mVerts){
+            point -= trans_vec;
+            point /= Model::maxpoint - Model::minpoint;
+
+        }
+    }
+
+}
 
 void Model::translate(gmtl::Vec3f){}
 
