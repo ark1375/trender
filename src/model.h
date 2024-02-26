@@ -7,11 +7,11 @@
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Matrix.h"
 
-typedef std::array<float , 3> Trious_f;
+typedef std::array<int , 3> Trious;
 class Model{
 private:
     std::vector<gmtl::Point3f> model_vertecies;
-    std::vector<Trious_f> model_faces;
+    std::vector<Trious> model_faces;
     
     gmtl::Point3f origin;
     gmtl::Point3f maxpoint;
@@ -36,9 +36,15 @@ public:
     void transform(gmtl::Matrix33f);
     void normalize(bool);
     
+
+    int getNumberOfFaces() const;
+    int getNumberOfVertices() const;
+    gmtl::Trif getTriangle(int face_number) const;
+    std::vector<gmtl::Point3f> getvertecies() const;
+
     void operator=(Model&) = delete;
     void operator=(Model&&) = delete;
 
-
+    
     
 };

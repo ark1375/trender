@@ -107,7 +107,7 @@ void Model::parsefaces(std::stringstream&& sf){
 
         bool is_end_num_reached = false;
         int indx = 0;
-        std::array<float,3> points;
+        std::array<int,3> points;
 
         for (const char ch : temp_line){
             
@@ -170,4 +170,24 @@ void Model::transform(gmtl::Matrix33f tmat){
     for (gmtl::Point3f &point : Model::model_vertecies)
             gmtl::xform(point , tmat, point);
 
+}
+
+int Model::getNumberOfFaces() const {
+    return num_of_faces;
+}
+
+int Model::getNumberOfVertices() const {
+    return num_of_vertecies;
+}
+
+gmtl::Trif Model::getTriangle (int face_number) const{
+    return gmtl::Trif(
+        Model::model_vertecies[Model::model_faces[face_number][0]],
+        Model::model_vertecies[Model::model_faces[face_number][1]],
+        Model::model_vertecies[Model::model_faces[face_number][2]]
+    );
+}
+
+std::vector<gmtl::Point3f> Model::getvertecies() const{
+    return Model::model_vertecies;
 }
