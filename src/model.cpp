@@ -12,6 +12,7 @@
 #include "../lib/gmtl/TriOps.h"
 #include "../lib/gmtl/Output.h"
 #include <iostream>
+#include <algorithm>
 
 constexpr float MAX_FLOAT = std::numeric_limits<float>::max();
 constexpr float MIN_FLOAT = std::numeric_limits<float>::min();
@@ -147,13 +148,14 @@ void Model::normalize(bool midpointzero){
     Model::maxpoint -= trans_vec;
     Model::minpoint -= trans_vec;
 
-    gmtl::Point3f normalizer = Model::maxpoint - Model::minpoint;
+    gmtl::Point3f normalizer_vec = Model::maxpoint - Model::minpoint;
+    float normalizer = *std::max_element(&(normalizer_vec.mData[0]) , &(normalizer_vec.mData[3]));
 
     for(gmtl::Point3f &point : Model::model_vertecies){
         point -= trans_vec;
-        point[0] = point[0] / normalizer[0];
-        point[1] = point[1] / normalizer[1];
-        point[2] = point[2] / normalizer[2];
+        point[0] = point[0] / normalizer;
+        point[1] = point[1] / normalizer;
+        point[2] = point[2] / normalizer;
     }
 
 }
