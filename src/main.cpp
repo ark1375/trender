@@ -16,6 +16,7 @@ int main(){
     Model mdl("../res/head.obj");
     mdl.readmodel();
     mdl.normalize(false);
+
     // Renderer::drawLine(gmtl::Point3f{0,0,0} , gmtl::Point3f{1,1,1} , image, WHITE);
     Renderer::drawWireframe(mdl, image , WHITE);
 

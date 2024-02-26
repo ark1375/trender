@@ -17,7 +17,7 @@
 constexpr float MAX_FLOAT = std::numeric_limits<float>::max();
 constexpr float MIN_FLOAT = std::numeric_limits<float>::min();
 
-Model::Model(std::string path) : path(path), origin(0,0,0),
+Model::Model(std::string path) : path(path), centeroid(0,0,0),
     minpoint(MAX_FLOAT, MAX_FLOAT, MAX_FLOAT),
     maxpoint(MIN_FLOAT, MIN_FLOAT, MIN_FLOAT) {}
 
@@ -91,9 +91,11 @@ void Model::parsevertecies(std::stringstream&& sv){
             }
         }
         checkminmax(point);
+        centeroid += point;
         Model::model_vertecies.push_back(point);
 
     }
+    centeroid /= num_of_vertecies;
 }
 
 void Model::parsefaces(std::stringstream&& sf){
@@ -134,22 +136,24 @@ void Model::parsefaces(std::stringstream&& sf){
 
 void Model::normalize(bool midpointzero){
 
-    Model::origin.set(0,0,0);
     gmtl::Vec3f trans_vec;
 
-    if (midpointzero){
-        trans_vec = (Model::maxpoint - Model::minpoint);
-        trans_vec /= 2.0;
-    }
-
+    if (midpointzero)
+        trans_vec = centeroid;
+    
     else
         trans_vec = Model::minpoint;
 
     Model::maxpoint -= trans_vec;
     Model::minpoint -= trans_vec;
+    Model::centeroid -= trans_vec;
 
     gmtl::Point3f normalizer_vec = Model::maxpoint - Model::minpoint;
     float normalizer = *std::max_element(&(normalizer_vec.mData[0]) , &(normalizer_vec.mData[3]));
+
+    Model::maxpoint  /= normalizer;
+    Model::minpoint  /= normalizer;
+    Model::centeroid /= normalizer;
 
     for(gmtl::Point3f &point : Model::model_vertecies){
         point -= trans_vec;

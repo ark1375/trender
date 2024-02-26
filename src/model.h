@@ -15,7 +15,7 @@ private:
     std::vector<gmtl::Point3f> model_vertecies;
     std::vector<Trious> model_faces;
     
-    gmtl::Point3f origin;
+    gmtl::Point3f centeroid;
     gmtl::Point3f maxpoint;
     gmtl::Point3f minpoint;
 
