@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <array>
 #include <string>
@@ -34,7 +36,7 @@ public:
     bool readmodel();
     void translate(gmtl::Vec3f);
     void transform(gmtl::Matrix33f);
-    void normalize(bool);
+    void normalize(bool=true);
     
 
     int getNumberOfFaces() const;

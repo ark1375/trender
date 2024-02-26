@@ -117,7 +117,7 @@ void Model::parsefaces(std::stringstream&& sf){
             else if (!is_end_num_reached && ch == '/'){
 
                 is_end_num_reached = true;
-                points[indx] = std::stoi(temp.str());
+                points[indx] = std::stoi(temp.str()) - 1;
                 indx++;
                 temp.str(std::string());
             }
@@ -131,7 +131,7 @@ void Model::parsefaces(std::stringstream&& sf){
 
 }
 
-void Model::normalize(bool midpointzero = true){
+void Model::normalize(bool midpointzero){
 
     Model::origin.set(0,0,0);
     gmtl::Vec3f trans_vec;

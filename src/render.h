@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include "tgaimage.h"
 #include "model.h"
@@ -12,7 +14,11 @@
 class Renderer{
 public:
     static void drawLine(const gmtl::Point3f& , const gmtl::Point3f&, TGAImage&, const TGAColor&);
+    static void drawTriangle_border( const gmtl::Trif, TGAImage&, const TGAColor& );
+    static void drawWireframe(const Model&, TGAImage&, const TGAColor&);
+
     static void drawTriangle(const gmtl::Trif, TGAImage&, const TGAColor&);
     static void drawFaces(const Model&, TGAImage& , const TGAColor&);
+
     static void drawFaces_Gradiant(const Model&, TGAImage&, const TGAColor&, const TGAColor&);
 };
