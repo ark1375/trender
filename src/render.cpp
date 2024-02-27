@@ -1,4 +1,5 @@
 #include "render.h"
+#include "utility.h"
 #include <algorithm>
 #include "../lib/gmtl/VecOps.h"
 #include "../lib/gmtl/Output.h"
@@ -49,5 +50,44 @@ void Renderer::drawWireframe(const Model& mdl, TGAImage& image, const TGAColor& 
 
     for (int i = 0 ; i < mdl.getNumberOfFaces() ; i++)
         Renderer::drawTriangle_border(mdl.getTriangle(i) , image , color);
+}
 
+static void drawTriangle_filled(const gmtl::Trif tri, TGAImage& image, const TGAColor& color){
+
+    float m_h = image.get_height();
+    float m_w = image.get_width();
+
+    float tang_ab = Util::calcTangant(tri[0] , tri[1]);
+    float tang_ac = Util::calcTangant(tri[0] , tri[2]);
+    float tang_bc = Util::calcTangant(tri[1] , tri[2]);
+
+    float step_y;
+
+    //i represents steps in y; we begin in topmost corner
+    for (int i = tri[2][1] ; i >= tri[0][1] ; i--){
+      
+        int left_most; 
+        int right_most;
+
+        if (tang_bc == 0 || tang_ab == 0 || tang_ac == 0) continue;
+        if (std::isnan(tang_ac) || std::isnan(tang_ab) || std::isnan(tang_bc)) continue;
+
+        //top half -> should draw CB,CA
+        if ( i >= triangle.vertB[1]){
+            left_most = ((i - tri[2][1]) / triangle.tang_bc) + triangle.vertC[0];
+            right_most = ((i - tri[2][1]) / triangle.tang_ac) + triangle.vertC[0];
+        }
+        //botom half
+        else {
+            left_most = ((i - tri[0][1]) / triangle.tang_ab) + triangle.vertA[0];
+            right_most = ((i - tri[0][1]) / triangle.tang_ac) + triangle.vertA[0];
+        }
+        if( left_most >= right_most ) std::swap(left_most, right_most);
+        for (int j = left_most ; j <= right_most ; j++){
+            // std::cout << j << "\t" << right_most << std::endl;
+            image.set(j, i, color);
+        }
+    }
+
+    
 }

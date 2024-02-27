@@ -17,8 +17,9 @@ public:
     static void drawTriangle_border( const gmtl::Trif, TGAImage&, const TGAColor& );
     static void drawWireframe(const Model&, TGAImage&, const TGAColor&);
 
-    static void drawTriangle(const gmtl::Trif, TGAImage&, const TGAColor&);
+    static void drawTriangle_filled(const gmtl::Trif, TGAImage&, const TGAColor&);
     static void drawFaces(const Model&, TGAImage& , const TGAColor&);
 
-    static void drawFaces_Gradiant(const Model&, TGAImage&, const TGAColor&, const TGAColor&);
+    static void drawTriangle_filled_gradient(const gmtl::Trif, TGAImage&, const TGAColor&, const TGAColor&);
+    static void drawFaces_gradiant(const Model&, TGAImage&, const TGAColor&, const TGAColor&);
 };
