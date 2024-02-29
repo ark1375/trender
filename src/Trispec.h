@@ -1,16 +1,16 @@
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
 
-
-class Trispec : public gmtl::Trif{
+template <typename TYPE>
+class Trispec : public gmtl::Tri<TYPE>{
 
 public:
 
-    Trispec(gmtl::Trif&);
-    Trispec(Trispec&);
-    Trispec( const gmtl::Point<float, 3>&, const gmtl::Point<float, 3>&, const gmtl::Point<float, 3>& );
+    Trispec(gmtl::Tri<TYPE>&);
+    Trispec(Trispec<TYPE>&);
+    Trispec( const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>& );
 
-    void set( const gmtl::Point<float, 3>&, const gmtl::Point<float, 3>&, const gmtl::Point<float, 3>& );
+    void set( const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>& );
     void orderVertecies();
     float getTangs(int);
     
@@ -19,3 +19,7 @@ private:
     float tangs[3];
     void calc_tangs();
 };
+
+using Trispec_f = Trispec<float>;
+using Trispec_d = Trispec<double>;
+using Trispec_i = Trispec<int>;

@@ -19,9 +19,11 @@ int main(){
     Model mdl("../res/head.obj");
     mdl.readmodel();
     mdl.normalize(false);
-    gmtl::Point<float, 3> p1{1,1,1} , p2{2,2,3} , p3{-1,-4,2};
-    gmtl::Tri<float> tr{p1,p2,p3};
-    Trispec tri(tr);
+    
+    gmtl::Point3f p1{1,1,1} , p2{2,2,3} , p3{-1,-4,2};
+    gmtl::Trif tr{p1,p2,p3};
+    Trispec_f tri(tr);
+
     std::cout << tri.mVerts[0] << std::endl;
     std::cout << tri.mVerts[1] << std::endl;
     std::cout << tri.mVerts[2] << std::endl;
