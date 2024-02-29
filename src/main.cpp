@@ -2,6 +2,9 @@
 #include "tgaimage.h"
 #include "model.h"
 #include "render.h"
+#include "Trispec.h"
+#include "../lib/gmtl/Tri.h"
+#include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/Output.h"
 
 const TGAColor WHITE    = TGAColor(255, 255, 255, 255);
@@ -16,9 +19,20 @@ int main(){
     Model mdl("../res/head.obj");
     mdl.readmodel();
     mdl.normalize(false);
+    gmtl::Point<float, 3> p1{1,1,1} , p2{2,2,3} , p3{-1,-4,2};
+    gmtl::Tri<float> tr{p1,p2,p3};
+    Trispec tri(tr);
+    std::cout << tri.mVerts[0] << std::endl;
+    std::cout << tri.mVerts[1] << std::endl;
+    std::cout << tri.mVerts[2] << std::endl;
+    std::cout << tri.getTangs(1) << std::endl;
+    std::cout << tri.getTangs(2) << std::endl;
+    std::cout << tri.getTangs(0) << std::endl;
+
+
 
     // Renderer::drawLine(gmtl::Point3f{0,0,0} , gmtl::Point3f{1,1,1} , image, WHITE);
-    Renderer::drawWireframe(mdl, image , WHITE);
+    // Renderer::drawWireframe(mdl, image , WHITE);
 
     // std::cout << mdl.getNumberOfFaces() << std::endl;
     // std::cout << mdl.getNumberOfVertices() << std::endl;
