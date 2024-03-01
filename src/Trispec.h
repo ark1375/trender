@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
 
@@ -8,6 +10,7 @@ public:
 
     Trispec(gmtl::Tri<TYPE>&);
     Trispec(Trispec<TYPE>&);
+    Trispec(gmtl::Tri<TYPE>&&);
     Trispec( const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>& );
 
     void set( const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>& );

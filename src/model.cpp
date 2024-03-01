@@ -1,4 +1,6 @@
 #include "model.h"
+#include "Trispec.h"
+
 #include <vector>
 #include <array>
 #include <string>
@@ -6,13 +8,14 @@
 #include <sstream>
 #include <fstream>
 #include <limits>
+#include <iostream>
+#include <algorithm>
+
 #include "../lib/gmtl/Xforms.h"
 #include "../lib/gmtl/VecOps.h"
 #include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/TriOps.h"
 #include "../lib/gmtl/Output.h"
-#include <iostream>
-#include <algorithm>
 
 constexpr float MAX_FLOAT = std::numeric_limits<float>::max();
 constexpr float MIN_FLOAT = std::numeric_limits<float>::min();
@@ -186,12 +189,12 @@ int Model::getNumberOfVertices() const {
     return num_of_vertecies;
 }
 
-gmtl::Trif Model::getTriangle (int face_number) const{
-    return gmtl::Trif(
+Trispec_f Model::getTriangle (int face_number) const{
+    return Trispec_f(gmtl::Trif(
         Model::model_vertecies[Model::model_faces[face_number][0]],
         Model::model_vertecies[Model::model_faces[face_number][1]],
         Model::model_vertecies[Model::model_faces[face_number][2]]
-    );
+    ));
 }
 
 std::vector<gmtl::Point3f> Model::getvertecies() const{

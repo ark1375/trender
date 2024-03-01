@@ -25,6 +25,14 @@ Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
 }
 
 template <typename TYPE>
+Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>&& tri) : gmtl::Tri<TYPE>(tri){
+    
+    orderVertecies();
+    calc_tangs();
+
+}
+
+template <typename TYPE>
 Trispec<TYPE>::Trispec( 
     const gmtl::Point<TYPE, 3>& p1,
     const gmtl::Point<TYPE, 3>& p2,

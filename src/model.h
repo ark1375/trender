@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Trispec.h"
+
 #include <vector>
 #include <array>
 #include <string>
@@ -41,7 +43,7 @@ public:
 
     int getNumberOfFaces() const;
     int getNumberOfVertices() const;
-    gmtl::Trif getTriangle(int face_number) const;
+    Trispec_f getTriangle(int face_number) const;
     std::vector<gmtl::Point3f> getvertecies() const;
 
     void operator=(Model&) = delete;
