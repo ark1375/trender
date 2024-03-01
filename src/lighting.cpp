@@ -24,5 +24,10 @@ float Direct_Light::calcIntensity(const Trispec_f& tri, const Direct_Light& ligh
     gmtl::Vec3f tr_norm = gmtl::normal(tri);
     gmtl::Vec3f light_dir = light.getDirection();
     float intens = gmtl::dot(tr_norm, light_dir);
+
     return intens;
+}
+
+void Direct_Light::normalize(){
+    gmtl::normalize(Direct_Light::directon);
 }

@@ -22,8 +22,9 @@ int main(){
     mdl.readmodel();
     mdl.normalize(false);
 
-    Direct_Light dl(gmtl::Vec3f{0,0,1});
-    
+    Direct_Light dl(gmtl::Vec3f{1,1,1});
+    dl.normalize();
+
     Renderer::drawFaces(mdl, image , WHITE, dl);
 
     // gmtl::Point3f p1{0.1,0.1,0.1} , p2{0.2,0.3,0.3} , p3{0.05,0.4,0.2};

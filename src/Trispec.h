@@ -20,12 +20,20 @@ public:
 
     void set( const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>& );
     float getTangs(int) const;
+    gmtl::Vec3f getBBXmax() const;
+    gmtl::Vec3f getBBXmin() const;
     void transform(const gmtl::Matrix<TYPE,3,3>);
+    bool contains(const gmtl::Point<TYPE,3>&);
     
 private:
 
     void orderVertecies();
+    void set_bbxs();
+
     float tangs[3];
+    gmtl::Vec3f bbx_min;
+    gmtl::Vec3f bbx_max;
+
     void calc_tangs();
 };
 

@@ -1,5 +1,7 @@
 #include "Trispec.h"
+
 #include "cassert"
+
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/TriOps.h"
@@ -16,6 +18,8 @@ Trispec<TYPE>::Trispec(const Trispec& tri){
 
     orderVertecies();
     calc_tangs();
+    set_bbxs();
+
 }
 
 
@@ -24,6 +28,7 @@ Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
     
     orderVertecies();
     calc_tangs();
+    set_bbxs();
 
 }
 
@@ -32,6 +37,7 @@ Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>&& tri) : gmtl::Tri<TYPE>(tri){
     
     orderVertecies();
     calc_tangs();
+    set_bbxs();
 
 }
 
@@ -43,6 +49,7 @@ Trispec<TYPE>::Trispec(
     
     orderVertecies();
     calc_tangs();
+    set_bbxs();
 
 }
 
@@ -54,6 +61,8 @@ void Trispec<TYPE>::set( const gmtl::Point<TYPE, 3>& p1, const gmtl::Point<TYPE,
 
     orderVertecies();
     calc_tangs();
+    set_bbxs();
+
 }
 
 template <typename TYPE>
@@ -103,8 +112,55 @@ void Trispec<TYPE>::transform(const gmtl::Matrix<TYPE,3,3> mat){
 
     orderVertecies();
     calc_tangs();
+    set_bbxs();
 
 }
+
+template <typename TYPE>
+bool Trispec<TYPE>::contains(const gmtl::Point<TYPE,3>& p){
+    
+}
+
+template <typename TYPE>
+void Trispec<TYPE>::set_bbxs(){
+
+    using base = gmtl::Tri<TYPE>;
+    using main = Trispec<TYPE>;
+
+    for (int i = 0 ; i <= 2 ; i++){
+
+        main::bbx_max[i] = base::mVerts[0][i];
+
+        if (main::bbx_max[i] < base::mVerts[1][i])
+            main::bbx_max[i] = base::mVerts[1][i];
+        
+        if (main::bbx_max[i] < base::mVerts[2][i])
+            main::bbx_max[i] = base::mVerts[2][i];
+    }
+
+    for (int i = 0 ; i <= 2 ; i++){
+
+        main::bbx_min[i] = base::mVerts[0][i];
+
+        if (main::bbx_min[i] > base::mVerts[1][i])
+            main::bbx_min[i] = base::mVerts[1][i];
+        
+        if (main::bbx_min[i] > base::mVerts[2][i])
+            main::bbx_min[i] = base::mVerts[2][i];
+    }
+
+}
+
+template <typename TYPE>
+gmtl::Vec3f Trispec<TYPE>::getBBXmax() const{
+    return Trispec<TYPE>::bbx_max;
+}   
+
+template <typename TYPE>
+gmtl::Vec3f Trispec<TYPE>::getBBXmin() const{
+    return Trispec<TYPE>::bbx_min;
+}
+
 
 template class Trispec<float>;
 template class Trispec<int>;

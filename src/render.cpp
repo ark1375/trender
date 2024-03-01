@@ -59,65 +59,74 @@ void Renderer::drawWireframe(const Model& mdl, TGAImage& image, const TGAColor& 
         Renderer::drawTriangle_border(mdl.getTriangle(i) , image , color);
 }
 
-void Renderer::drawTriangle_filled(const  Trispec_f tri, TGAImage& image, const TGAColor& color){
+
+// void Renderer::drawTriangle_filled(const  Trispec_f tri, TGAImage& image, const TGAColor& color){
 
 
-    Trispec_f tri_c(tri);
+//     Trispec_f tri_c(tri);
 
-    float m_h = image.get_height();
-    float m_w = image.get_width();
+//     float m_h = image.get_height();
+//     float m_w = image.get_width();
 
-    gmtl::Matrix33f tmat;
-    tmat.set(
-        m_h , 0.0 , 0.0,
-        0.0 , m_w , 0.0,
-        0.0 , 0.0 , 1.0
-    );
+//     gmtl::Matrix33f tmat;
+//     tmat.set(
+//         m_h , 0.0 , 0.0,
+//         0.0 , m_w , 0.0,
+//         0.0 , 0.0 , 1.0
+//     );
 
-    tri_c.transform(tmat);
+//     tri_c.transform(tmat);
 
-    //i represents steps in y; we begin in topmost corner
-    for (int i = (tri_c[0][1]) ; i >= (tri_c[2][1]) ; i--){
+//     //i represents steps in y; we begin in topmost corner
+//     for (int i = (tri_c[0][1]) ; i >= (tri_c[2][1]) ; i--){
       
-        int left_most; 
-        int right_most;
+//         int left_most; 
+//         int right_most;
 
-        if (tri_c.getTangs(0) == 0 || tri_c.getTangs(1) == 0 || tri_c.getTangs(2) == 0) continue;
-        if (std::isnan(tri_c.getTangs(0)) || std::isnan(tri_c.getTangs(1)) || std::isnan(tri_c.getTangs(2))) continue;
+//         if (tri_c.getTangs(0) == 0 || tri_c.getTangs(1) == 0 || tri_c.getTangs(2) == 0) continue;
+//         if (std::isnan(tri_c.getTangs(0)) || std::isnan(tri_c.getTangs(1)) || std::isnan(tri_c.getTangs(2))) continue;
 
-        //top half -> should draw CB,CA
-        if ( i >= (tri_c[1][1])){
-            left_most =  ((i - tri_c[0][1]) / tri_c.getTangs(TANG_INDX::AB)) + tri_c[0][0];
-            right_most = ((i - tri_c[0][1]) / tri_c.getTangs(TANG_INDX::AC)) + tri_c[0][0];
-        }
+//         //top half -> should draw CB,CA
+//         if ( i >= (tri_c[1][1])){
+//             left_most =  ((i - tri_c[0][1]) / tri_c.getTangs(TANG_INDX::AB)) + tri_c[0][0];
+//             right_most = ((i - tri_c[0][1]) / tri_c.getTangs(TANG_INDX::AC)) + tri_c[0][0];
+//         }
 
-        //botom half
-        else {
-            left_most =  ((i - tri_c[2][1]) / tri_c.getTangs(TANG_INDX::BC)) + tri_c[2][0];
-            right_most = ((i - tri_c[2][1]) / tri_c.getTangs(TANG_INDX::AC)) + tri_c[2][0];
-        }
+//         //botom half
+//         else {
+//             left_most =  ((i - tri_c[2][1]) / tri_c.getTangs(TANG_INDX::BC)) + tri_c[2][0];
+//             right_most = ((i - tri_c[2][1]) / tri_c.getTangs(TANG_INDX::AC)) + tri_c[2][0];
+//         }
         
-        if( left_most >= right_most ) std::swap(left_most, right_most);
+//         if( left_most >= right_most ) std::swap(left_most, right_most);
 
-        for (int j = (left_most) ; j <= (right_most) ; j++){
-            // std::cout << j << "\t" << right_most << std::endl;
-            image.set(j, i, color);
-        }
-    }
+//         for (int j = (left_most) ; j <= (right_most) ; j++){
+//             // std::cout << j << "\t" << right_most << std::endl;
+//             image.set(j, i, color);
+//         }
+//     }
 
     
+// }
+
+void Renderer::drawTriangle_filled(const  Trispec_f tri, TGAImage& image, const TGAColor& color){
+
+    
+
 }
+
 
 void Renderer::drawFaces(const Model& mdl, TGAImage& image , const TGAColor& color, Light& light){
     for( int i = 0; i < mdl.getNumberOfFaces(); i++){
 
         Trispec_f tr = mdl.getTriangle(i);
         float intens = Direct_Light::calcIntensity(tr, reinterpret_cast<Direct_Light&>(light));
-        if (intens >= -1){
+        std::cout << intens << std::endl;
+        if (intens >= 0){
             TGAColor cl = color;
-            cl.r *= abs(intens);
-            cl.g *= abs(intens);
-            cl.b *= abs(intens);
+            cl.r *= intens;
+            cl.g *= intens;
+            cl.b *= intens;
             Renderer::drawTriangle_filled( tr , image , cl);
         }
     }
