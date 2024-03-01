@@ -4,9 +4,12 @@
 #include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/TriOps.h"
 #include "../lib/gmtl/VecOps.h"
+#include "../lib/gmtl/Matrix.h"
+#include "../lib/gmtl/Xforms.h"
+#include "../lib/gmtl/Output.h"
 
 template <typename TYPE>
-Trispec<TYPE>::Trispec(Trispec& tri){
+Trispec<TYPE>::Trispec(const Trispec& tri){
     Trispec::mVerts[0] = tri.mVerts[0];
     Trispec::mVerts[1] = tri.mVerts[1];
     Trispec::mVerts[2] = tri.mVerts[2];
@@ -17,7 +20,7 @@ Trispec<TYPE>::Trispec(Trispec& tri){
 
 
 template <typename TYPE>
-Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
+Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
     
     orderVertecies();
     calc_tangs();
@@ -62,6 +65,9 @@ void Trispec<TYPE>::orderVertecies(){
     if (base::mVerts[0][1] < base::mVerts[2][1])
         std::swap(base::mVerts[0], base::mVerts[2]);
 
+    if (base::mVerts[1][1] < base::mVerts[2][1])
+        std::swap(base::mVerts[1], base::mVerts[2]);
+
 }
 
 template <typename TYPE>
@@ -69,19 +75,35 @@ void Trispec<TYPE>::calc_tangs(){
 
     using base = gmtl::Tri<TYPE>;
     
+    //AB
     tangs[0] = (base::mVerts[0][1] - base::mVerts[1][1] ) / (base::mVerts[0][0] - base::mVerts[1][0] );
+    //BC
     tangs[1] = (base::mVerts[1][1] - base::mVerts[2][1] ) / (base::mVerts[1][0] - base::mVerts[2][0] );
+    //AC
     tangs[2] = (base::mVerts[0][1] - base::mVerts[2][1] ) / (base::mVerts[0][0] - base::mVerts[2][0] );
 
 }
 
 template <typename TYPE>
-float Trispec<TYPE>::getTangs(int edge){
+float Trispec<TYPE>::getTangs(int edge) const{
     assert(edge >= 0 && edge <= 2);
     if(edge == 0 || edge == 1 || edge == 2)
         return tangs[edge];
 
     else return 0;
+}
+
+template <typename TYPE>
+void Trispec<TYPE>::transform(const gmtl::Matrix<TYPE,3,3> mat){
+    using base = gmtl::Tri<TYPE>;
+
+    base::mVerts[0] *= mat;
+    base::mVerts[1] *= mat;
+    base::mVerts[2] *= mat;
+
+    orderVertecies();
+    calc_tangs();
+
 }
 
 template class Trispec<float>;
