@@ -34,12 +34,12 @@ int main(){
 
 
     // Renderer::drawLine(gmtl::Point3f{0,0,0} , gmtl::Point3f{1,1,1} , image, WHITE);
-    // Renderer::drawWireframe(mdl, image , WHITE);
+    Renderer::drawWireframe(mdl, image , WHITE);
 
     // std::cout << mdl.getNumberOfFaces() << std::endl;
     // std::cout << mdl.getNumberOfVertices() << std::endl;
-    for (int i = 0 ; i < 3; i++)
-        std::cout << i <<"\t"<< mdl.getTriangle(i) << std::endl;
+    // for (int i = 0 ; i < 3; i++)
+    //     std::cout << i <<"\t"<< mdl.getTriangle(i) << std::endl;
 
     // for (gmtl::Point3f p : mdl.getvertecies()){
     //     std::cout << p << std::endl;
