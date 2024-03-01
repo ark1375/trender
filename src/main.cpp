@@ -3,6 +3,8 @@
 #include "model.h"
 #include "render.h"
 #include "Trispec.h"
+#include "lighting.h"
+
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/Output.h"
@@ -20,17 +22,21 @@ int main(){
     mdl.readmodel();
     mdl.normalize(false);
 
-    gmtl::Point3f p1{0.1,0.1,0.1} , p2{0.2,0.3,0.3} , p3{0.05,0.4,0.2};
-    gmtl::Trif tr{p1,p2,p3};
-    Trispec_f tri(tr);
+    Direct_Light dl(gmtl::Vec3f{0,0,1});
+    
+    Renderer::drawFaces(mdl, image , WHITE, dl);
 
-    Renderer::drawTriangle_filled(tri , image, WHITE);
-    std::cout << tri.mVerts[0] << std::endl;
-    std::cout << tri.mVerts[1] << std::endl;
-    std::cout << tri.mVerts[2] << std::endl;
-    std::cout << tri.getTangs(1) << std::endl;
-    std::cout << tri.getTangs(2) << std::endl;
-    std::cout << tri.getTangs(0) << std::endl;
+    // gmtl::Point3f p1{0.1,0.1,0.1} , p2{0.2,0.3,0.3} , p3{0.05,0.4,0.2};
+    // gmtl::Trif tr{p1,p2,p3};
+    // Trispec_f tri(tr);
+
+    // Renderer::drawTriangle_filled(tri , image, WHITE);
+    // std::cout << tri.mVerts[0] << std::endl;
+    // std::cout << tri.mVerts[1] << std::endl;
+    // std::cout << tri.mVerts[2] << std::endl;
+    // std::cout << tri.getTangs(1) << std::endl;
+    // std::cout << tri.getTangs(2) << std::endl;
+    // std::cout << tri.getTangs(0) << std::endl;
 
 
 

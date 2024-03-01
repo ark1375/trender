@@ -1,8 +1,10 @@
 #pragma once
 
 #include <vector>
+
 #include "tgaimage.h"
 #include "model.h"
+#include "lighting.h"
 
 #include "../lib/gmtl/Point.h"
 #include "../lib/gmtl/Vec.h"
@@ -18,7 +20,7 @@ public:
     static void drawWireframe(const Model&, TGAImage&, const TGAColor&);
 
     static void drawTriangle_filled(const Trispec_f, TGAImage&, const TGAColor&);
-    static void drawFaces(const Model&, TGAImage& , const TGAColor&);
+    static void drawFaces(const Model&, TGAImage& , const TGAColor&, Light&);
 
     static void drawTriangle_filled_gradient(const Trispec_f, TGAImage&, const TGAColor&, const TGAColor&);
     static void drawFaces_gradiant(const Model&, TGAImage&, const TGAColor&, const TGAColor&);

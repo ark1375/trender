@@ -1,10 +1,15 @@
 #include "render.h"
 #include "utility.h"
 #include "Trispec.h"
+#include "lighting.h"
+
 #include <algorithm>
+#include <math.h>
+
 #include "../lib/gmtl/VecOps.h"
 #include "../lib/gmtl/Output.h"
 #include "../lib/gmtl/Matrix.h"
+#include "../lib/gmtl/TriOps.h"
 
 void Renderer::drawLine(const gmtl::Point3f& p1 , const gmtl::Point3f& p2, TGAImage& image, const TGAColor& color){
     
@@ -103,6 +108,17 @@ void Renderer::drawTriangle_filled(const  Trispec_f tri, TGAImage& image, const 
     
 }
 
-// void Renderer::drawFaces(const Model&, TGAImage& , const TGAColor&){
-//     for
-// }
+void Renderer::drawFaces(const Model& mdl, TGAImage& image , const TGAColor& color, Light& light){
+    for( int i = 0; i < mdl.getNumberOfFaces(); i++){
+
+        Trispec_f tr = mdl.getTriangle(i);
+        float intens = Direct_Light::calcIntensity(tr, reinterpret_cast<Direct_Light&>(light));
+        if (intens >= -1){
+            TGAColor cl = color;
+            cl.r *= abs(intens);
+            cl.g *= abs(intens);
+            cl.b *= abs(intens);
+            Renderer::drawTriangle_filled( tr , image , cl);
+        }
+    }
+}
