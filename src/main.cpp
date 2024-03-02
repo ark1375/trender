@@ -22,7 +22,7 @@ int main(){
     mdl.readmodel();
     mdl.normalize(false);
 
-    Direct_Light dl(gmtl::Vec3f{1,1,1});
+    Direct_Light dl(gmtl::Vec3f{0,0,1});
     dl.normalize();
 
     Renderer::drawFaces(mdl, image , WHITE, dl);

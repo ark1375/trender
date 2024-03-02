@@ -140,7 +140,7 @@ void Renderer::drawFaces(const Model& mdl, TGAImage& image , const TGAColor& col
 
         Trispec_f tr = mdl.getTriangle(i);
         float intens = Direct_Light::calcIntensity(tr, reinterpret_cast<Direct_Light&>(light));
-        std::cout << intens << std::endl;
+        // std::cout << intens << std::endl;
         if (intens >= 0){
             TGAColor cl = color;
             cl.r = (int)(cl.r * intens);

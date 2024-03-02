@@ -22,8 +22,11 @@ public:
     float getTangs(int) const;
     gmtl::Vec<TYPE,3> getBBXmax() const;
     gmtl::Vec<TYPE,3> getBBXmin() const;
+    gmtl::Vec<TYPE,3> getnormal() const;
+
     void transform(const gmtl::Matrix<TYPE,3,3>);
     bool contains(const gmtl::Point<TYPE,3>&);
+    gmtl::Vec<TYPE,3> nnormal() const;
     
 private:
 
@@ -40,6 +43,8 @@ private:
 
     gmtl::Vec<TYPE,3>  invAB;
     gmtl::Vec<TYPE,3>  invAC;
+
+    gmtl::Vec<TYPE,3> nn;
 
     void calc_tangs();
 };

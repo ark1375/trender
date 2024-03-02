@@ -27,6 +27,7 @@ Trispec<TYPE>::Trispec(const Trispec& tri){
 template <typename TYPE>
 Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
     
+    Trispec<TYPE>::nn = nnormal();
     orderVertecies();
     calc_tangs();
     set_bbxs();
@@ -37,6 +38,7 @@ Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
 template <typename TYPE>
 Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>&& tri) : gmtl::Tri<TYPE>(tri){
     
+    Trispec<TYPE>::nn = nnormal();
     orderVertecies();
     calc_tangs();
     set_bbxs();
@@ -49,7 +51,8 @@ Trispec<TYPE>::Trispec(
     const gmtl::Point<TYPE, 3>& p1,
     const gmtl::Point<TYPE, 3>& p2,
     const gmtl::Point<TYPE, 3>& p3) : gmtl::Tri<TYPE>(p1,p2,p3){
-    
+
+    Trispec<TYPE>::nn = nnormal();
     orderVertecies();
     calc_tangs();
     set_bbxs();
@@ -63,6 +66,7 @@ void Trispec<TYPE>::set( const gmtl::Point<TYPE, 3>& p1, const gmtl::Point<TYPE,
     gmtl::Tri<TYPE>::mVerts[1] = p2;
     gmtl::Tri<TYPE>::mVerts[2] = p3;
 
+    Trispec<TYPE>::nn = nnormal();
     orderVertecies();
     calc_tangs();
     set_bbxs();
@@ -186,6 +190,19 @@ void Trispec<TYPE>::calc_bycent(){
     Trispec<TYPE>::invAC = Trispec<TYPE>::AC / determinat;
 
 }
+
+template <typename TYPE>
+gmtl::Vec<TYPE,3> Trispec<TYPE>::nnormal() const{
+    gmtl::Vec<TYPE,3> nn = gmtl::normal(*this);
+    gmtl::normalize(nn);
+    return nn;
+}
+
+template <typename TYPE>
+gmtl::Vec<TYPE,3> Trispec<TYPE>::getnormal() const{
+    return Trispec<TYPE>::nn;
+}
+
 
 template class Trispec<float>;
 template class Trispec<int>;
