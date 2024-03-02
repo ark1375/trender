@@ -111,7 +111,26 @@ void Renderer::drawWireframe(const Model& mdl, TGAImage& image, const TGAColor& 
 
 void Renderer::drawTriangle_filled(const  Trispec_f tri, TGAImage& image, const TGAColor& color){
 
-    
+    Trispec_f tri_c(tri);
+
+    float m_h = image.get_height();
+    float m_w = image.get_width();
+
+    gmtl::Matrix33f tmat;
+    tmat.set(
+        m_h , 0.0 , 0.0,
+        0.0 , m_w , 0.0,
+        0.0 , 0.0 , 1.0
+    );
+
+    tri_c.transform(tmat);
+
+    for(int i = tri_c.getBBXmin()[0] ; i < tri_c.getBBXmax()[0] ; i++)
+        for(int j = tri_c.getBBXmin()[1] ; j < tri_c.getBBXmax()[1] ; j++){
+            gmtl::Point3f p {i,j,0};
+            if(tri_c.contains(p))
+                image.set(i,j,color);
+        }
 
 }
 
@@ -124,9 +143,9 @@ void Renderer::drawFaces(const Model& mdl, TGAImage& image , const TGAColor& col
         std::cout << intens << std::endl;
         if (intens >= 0){
             TGAColor cl = color;
-            cl.r *= intens;
-            cl.g *= intens;
-            cl.b *= intens;
+            cl.r = (int)(cl.r * intens);
+            cl.g = (int)(cl.g * intens);
+            cl.b = (int)(cl.b * intens);
             Renderer::drawTriangle_filled( tr , image , cl);
         }
     }

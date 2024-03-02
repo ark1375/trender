@@ -20,8 +20,8 @@ public:
 
     void set( const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>&, const gmtl::Point<TYPE, 3>& );
     float getTangs(int) const;
-    gmtl::Vec3f getBBXmax() const;
-    gmtl::Vec3f getBBXmin() const;
+    gmtl::Vec<TYPE,3> getBBXmax() const;
+    gmtl::Vec<TYPE,3> getBBXmin() const;
     void transform(const gmtl::Matrix<TYPE,3,3>);
     bool contains(const gmtl::Point<TYPE,3>&);
     
@@ -29,10 +29,17 @@ private:
 
     void orderVertecies();
     void set_bbxs();
+    void calc_bycent();
 
     float tangs[3];
-    gmtl::Vec3f bbx_min;
-    gmtl::Vec3f bbx_max;
+    gmtl::Vec<TYPE,3>  bbx_min;
+    gmtl::Vec<TYPE,3> bbx_max;
+
+    gmtl::Vec<TYPE,3>  AB;
+    gmtl::Vec<TYPE,3>  AC;
+
+    gmtl::Vec<TYPE,3>  invAB;
+    gmtl::Vec<TYPE,3>  invAC;
 
     void calc_tangs();
 };

@@ -19,6 +19,7 @@ Trispec<TYPE>::Trispec(const Trispec& tri){
     orderVertecies();
     calc_tangs();
     set_bbxs();
+    calc_bycent();
 
 }
 
@@ -29,6 +30,7 @@ Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
     orderVertecies();
     calc_tangs();
     set_bbxs();
+    calc_bycent();
 
 }
 
@@ -38,6 +40,7 @@ Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>&& tri) : gmtl::Tri<TYPE>(tri){
     orderVertecies();
     calc_tangs();
     set_bbxs();
+    calc_bycent();
 
 }
 
@@ -50,6 +53,7 @@ Trispec<TYPE>::Trispec(
     orderVertecies();
     calc_tangs();
     set_bbxs();
+    calc_bycent();
 
 }
 
@@ -62,6 +66,7 @@ void Trispec<TYPE>::set( const gmtl::Point<TYPE, 3>& p1, const gmtl::Point<TYPE,
     orderVertecies();
     calc_tangs();
     set_bbxs();
+    calc_bycent();
 
 }
 
@@ -113,12 +118,19 @@ void Trispec<TYPE>::transform(const gmtl::Matrix<TYPE,3,3> mat){
     orderVertecies();
     calc_tangs();
     set_bbxs();
+    calc_bycent();
 
 }
 
 template <typename TYPE>
 bool Trispec<TYPE>::contains(const gmtl::Point<TYPE,3>& p){
-    
+    using base = gmtl::Tri<TYPE>;
+    gmtl::Vec<TYPE,3> PA = base::mVerts[0] - p;
+
+    TYPE u = (-PA[0] * Trispec<TYPE>::invAC[1]) + (PA[1] * Trispec<TYPE>::invAC[0]);
+    TYPE v = (-PA[1] * Trispec<TYPE>::invAB[0]) + (PA[0] * Trispec<TYPE>::invAB[1]);
+
+    if (u >= -0.01 && v >= -0.01 && 1-u-v >=-0.01) return true; else return false;
 }
 
 template <typename TYPE>
@@ -152,15 +164,28 @@ void Trispec<TYPE>::set_bbxs(){
 }
 
 template <typename TYPE>
-gmtl::Vec3f Trispec<TYPE>::getBBXmax() const{
+gmtl::Vec<TYPE,3> Trispec<TYPE>::getBBXmax() const{
     return Trispec<TYPE>::bbx_max;
 }   
 
 template <typename TYPE>
-gmtl::Vec3f Trispec<TYPE>::getBBXmin() const{
+gmtl::Vec<TYPE,3> Trispec<TYPE>::getBBXmin() const{
     return Trispec<TYPE>::bbx_min;
 }
 
+template <typename TYPE>
+void Trispec<TYPE>::calc_bycent(){
+    using base = gmtl::Tri<TYPE>;
+
+    Trispec<TYPE>::AB = base::mVerts[1] - base::mVerts[0];
+    Trispec<TYPE>::AC = base::mVerts[2] - base::mVerts[0];
+
+    TYPE determinat = AB[0] * AC[1] - AC[0] * AC[1];
+
+    Trispec<TYPE>::invAB = Trispec<TYPE>::AB / determinat;
+    Trispec<TYPE>::invAC = Trispec<TYPE>::AC / determinat;
+
+}
 
 template class Trispec<float>;
 template class Trispec<int>;
