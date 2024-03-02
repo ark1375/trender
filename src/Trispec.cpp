@@ -16,8 +16,6 @@ Trispec<TYPE>::Trispec(const Trispec& tri){
     Trispec::mVerts[1] = tri.mVerts[1];
     Trispec::mVerts[2] = tri.mVerts[2];
 
-    orderVertecies();
-    calc_tangs();
     set_bbxs();
     calc_bycent();
 
@@ -26,10 +24,7 @@ Trispec<TYPE>::Trispec(const Trispec& tri){
 
 template <typename TYPE>
 Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
-    
-    Trispec<TYPE>::nn = nnormal();
-    orderVertecies();
-    calc_tangs();
+
     set_bbxs();
     calc_bycent();
 
@@ -38,9 +33,6 @@ Trispec<TYPE>::Trispec( const gmtl::Tri<TYPE>& tri) : gmtl::Tri<TYPE>(tri){
 template <typename TYPE>
 Trispec<TYPE>::Trispec( gmtl::Tri<TYPE>&& tri) : gmtl::Tri<TYPE>(tri){
     
-    Trispec<TYPE>::nn = nnormal();
-    orderVertecies();
-    calc_tangs();
     set_bbxs();
     calc_bycent();
 
@@ -52,9 +44,6 @@ Trispec<TYPE>::Trispec(
     const gmtl::Point<TYPE, 3>& p2,
     const gmtl::Point<TYPE, 3>& p3) : gmtl::Tri<TYPE>(p1,p2,p3){
 
-    Trispec<TYPE>::nn = nnormal();
-    orderVertecies();
-    calc_tangs();
     set_bbxs();
     calc_bycent();
 
@@ -66,50 +55,11 @@ void Trispec<TYPE>::set( const gmtl::Point<TYPE, 3>& p1, const gmtl::Point<TYPE,
     gmtl::Tri<TYPE>::mVerts[1] = p2;
     gmtl::Tri<TYPE>::mVerts[2] = p3;
 
-    Trispec<TYPE>::nn = nnormal();
-    orderVertecies();
-    calc_tangs();
     set_bbxs();
     calc_bycent();
 
 }
 
-template <typename TYPE>
-void Trispec<TYPE>::orderVertecies(){
-    using base = gmtl::Tri<TYPE>;
-    if (base::mVerts[0][1] < base::mVerts[1][1])
-        std::swap(base::mVerts[0] , base::mVerts[1]);
-
-    if (base::mVerts[0][1] < base::mVerts[2][1])
-        std::swap(base::mVerts[0], base::mVerts[2]);
-
-    if (base::mVerts[1][1] < base::mVerts[2][1])
-        std::swap(base::mVerts[1], base::mVerts[2]);
-
-}
-
-template <typename TYPE>
-void Trispec<TYPE>::calc_tangs(){
-
-    using base = gmtl::Tri<TYPE>;
-    
-    //AB
-    tangs[0] = (base::mVerts[0][1] - base::mVerts[1][1] ) / (base::mVerts[0][0] - base::mVerts[1][0] );
-    //BC
-    tangs[1] = (base::mVerts[1][1] - base::mVerts[2][1] ) / (base::mVerts[1][0] - base::mVerts[2][0] );
-    //AC
-    tangs[2] = (base::mVerts[0][1] - base::mVerts[2][1] ) / (base::mVerts[0][0] - base::mVerts[2][0] );
-
-}
-
-template <typename TYPE>
-float Trispec<TYPE>::getTangs(int edge) const{
-    assert(edge >= 0 && edge <= 2);
-    if(edge == 0 || edge == 1 || edge == 2)
-        return tangs[edge];
-
-    else return 0;
-}
 
 template <typename TYPE>
 void Trispec<TYPE>::transform(const gmtl::Matrix<TYPE,3,3> mat){
@@ -119,8 +69,6 @@ void Trispec<TYPE>::transform(const gmtl::Matrix<TYPE,3,3> mat){
     base::mVerts[1] *= mat;
     base::mVerts[2] *= mat;
 
-    orderVertecies();
-    calc_tangs();
     set_bbxs();
     calc_bycent();
 
@@ -134,7 +82,7 @@ bool Trispec<TYPE>::contains(const gmtl::Point<TYPE,3>& p){
     TYPE u = (-PA[0] * Trispec<TYPE>::invAC[1]) + (PA[1] * Trispec<TYPE>::invAC[0]);
     TYPE v = (-PA[1] * Trispec<TYPE>::invAB[0]) + (PA[0] * Trispec<TYPE>::invAB[1]);
 
-    if (u >= -0.01 && v >= -0.01 && 1-u-v >=-0.01) return true; else return false;
+    if (u >= 0 && v >= 0 && (1-u-v) >=0) return true; else return false;
 }
 
 template <typename TYPE>
@@ -184,7 +132,7 @@ void Trispec<TYPE>::calc_bycent(){
     Trispec<TYPE>::AB = base::mVerts[1] - base::mVerts[0];
     Trispec<TYPE>::AC = base::mVerts[2] - base::mVerts[0];
 
-    TYPE determinat = AB[0] * AC[1] - AC[0] * AC[1];
+    TYPE determinat = (AB[0] * AC[1]) - (AC[0] * AB[1]);
 
     Trispec<TYPE>::invAB = Trispec<TYPE>::AB / determinat;
     Trispec<TYPE>::invAC = Trispec<TYPE>::AC / determinat;
@@ -198,10 +146,6 @@ gmtl::Vec<TYPE,3> Trispec<TYPE>::nnormal() const{
     return nn;
 }
 
-template <typename TYPE>
-gmtl::Vec<TYPE,3> Trispec<TYPE>::getnormal() const{
-    return Trispec<TYPE>::nn;
-}
 
 
 template class Trispec<float>;

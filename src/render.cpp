@@ -125,8 +125,8 @@ void Renderer::drawTriangle_filled(const  Trispec_f tri, TGAImage& image, const 
 
     tri_c.transform(tmat);
 
-    for(int i = tri_c.getBBXmin()[0] ; i < tri_c.getBBXmax()[0] ; i++)
-        for(int j = tri_c.getBBXmin()[1] ; j < tri_c.getBBXmax()[1] ; j++){
+    for(int i = tri_c.getBBXmin()[0] ; i <= tri_c.getBBXmax()[0] ; i++)
+        for(int j = tri_c.getBBXmin()[1] ; j <= tri_c.getBBXmax()[1] ; j++){
             gmtl::Point3f p {i,j,0};
             if(tri_c.contains(p))
                 image.set(i,j,color);

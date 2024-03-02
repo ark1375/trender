@@ -18,7 +18,7 @@ int main(){
 
     TGAImage image(800, 800, TGAImage::RGB);
 
-    Model mdl("../res/head.obj");
+    Model mdl("../res/head2.obj");
     mdl.readmodel();
     mdl.normalize(false);
 
@@ -30,6 +30,9 @@ int main(){
     // gmtl::Point3f p1{0.1,0.1,0.1} , p2{0.2,0.3,0.3} , p3{0.05,0.4,0.2};
     // gmtl::Trif tr{p1,p2,p3};
     // Trispec_f tri(tr);
+    // std::cout << tri.getBBXmax() << std::endl;
+    // std::cout << tri.getBBXmin() << std::endl;
+
 
     // Renderer::drawTriangle_filled(tri , image, WHITE);
     // std::cout << tri.mVerts[0] << std::endl;

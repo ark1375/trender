@@ -21,7 +21,7 @@ gmtl::Vec3f Direct_Light::getDirection() const{
 
 float Direct_Light::calcIntensity(const Trispec_f& tri, const Direct_Light& light){
 
-    gmtl::Vec3f tr_norm = tri.getnormal();
+    gmtl::Vec3f tr_norm = tri.nnormal();
     gmtl::Vec3f light_dir = light.getDirection();
     float intens = gmtl::dot(tr_norm, light_dir);
 
