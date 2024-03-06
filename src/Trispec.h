@@ -42,6 +42,6 @@ private:
 
 };
 
-using Trispec_f = Trispec<float>;
-using Trispec_d = Trispec<double>;
-using Trispec_i = Trispec<int>;
+typedef Trispec<float> Trispec_f;
+typedef Trispec<double> Trispec_d;
+typedef Trispec<int> Trispec_i;

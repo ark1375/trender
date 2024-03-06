@@ -4,6 +4,7 @@
 #include "render.h"
 #include "Trispec.h"
 #include "lighting.h"
+#include "dbuffer.h"
 
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
@@ -18,14 +19,23 @@ int main(){
 
     TGAImage image(800, 800, TGAImage::RGB);
 
-    Model mdl("../res/head2.obj");
+    Model mdl("../res/head.obj");
     mdl.readmodel();
     mdl.normalize(false);
+    DepthBuffer dpb(800,800);
+    dpb.calcDepthBuffer(mdl);
+    for (int i = 0; i < 800 ; i++)
+        for (int j = 0 ; j < 800 ; j++){
+            int dval = dpb.get_image_data(i,j);
+            TGAColor cl (dval,dval,dval, 255);
+            image.set(i , j , cl);
+        }
+    // Direct_Light dl(gmtl::Vec3f{0,0,1});
+    // dl.normalize();
 
-    Direct_Light dl(gmtl::Vec3f{0,0,1});
-    dl.normalize();
+    // Renderer::drawFaces(mdl, image , WHITE, dl);
 
-    Renderer::drawFaces(mdl, image , WHITE, dl);
+
 
     // gmtl::Point3f p1{0.1,0.1,0.1} , p2{0.2,0.3,0.3} , p3{0.05,0.4,0.2};
     // gmtl::Trif tr{p1,p2,p3};
@@ -49,8 +59,11 @@ int main(){
 
     // std::cout << mdl.getNumberOfFaces() << std::endl;
     // std::cout << mdl.getNumberOfVertices() << std::endl;
-    // for (int i = 0 ; i < 3; i++)
-    //     std::cout << i <<"\t"<< mdl.getTriangle(i) << std::endl;
+    // for (int i = 0 ; i < mdl.getNumberOfFaces(); i++){
+    //     Trispec_f tr = mdl.getTriangle(i);
+    //     if (tr[0][2] < 0 || tr[1][2] < 0 || tr[0][2] < 0)
+    //         std::cout << i <<"\t"<< tr << std::endl;
+    // }
 
     // for (gmtl::Point3f p : mdl.getvertecies()){
     //     std::cout << p << std::endl;
