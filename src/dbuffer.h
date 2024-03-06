@@ -1,13 +1,24 @@
+#include "model.h"
+#include "Trispec.h"
 #include <array>
-#include "../lib/gmtl/Ve"
-using PixelPoint = std::array<int , 2>;
-
+#include <memory>
 class DepthBuffer{
 public:
 
-    bool visFunction();
+    DepthBuffer(int , int);
+    // bool visFunction();
+    void calcDepthBuffer(Model&);
+    float getDepthData(int, int);
+    ~DepthBuffer();
 
 private:
-    std::pair<PixelPoint, float> buffer;
+
+    //Here I should probablu use unique pointers
+    int bheight , bwidth;
+    std::unique_ptr<float[]> buffer;
+    void initialize_bufffer_inf();
     
+    template<typename T>
+    void calcDepthBuffer_triangle(Trispec<T>&);
+
 };
