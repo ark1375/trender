@@ -1,3 +1,5 @@
+#pragma once
+
 #include "model.h"
 #include "Trispec.h"
 #include <array>

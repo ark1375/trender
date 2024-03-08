@@ -1,3 +1,5 @@
+#pragma once
+
 #include "world.h"
 #include "model.h"
 #include "../lib/gmtl/Point.h"
@@ -15,7 +17,7 @@ public:
     gmtl::Matrix<float , 3 , 4> getExtrinsic();
     gmtl::Matrix<float , 3 , 3> getIntrinsic();
 
-    World transform_world(World&);
+    // World transform_world(World&);
     Model transform_model(Model&);
     
 

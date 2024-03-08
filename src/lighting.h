@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Trispec.h"
 #include "../lib/gmtl/Matrix.h"
 #include "../lib/gmtl/Vec.h"

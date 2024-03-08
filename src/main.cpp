@@ -1,10 +1,12 @@
 #include <iostream>
+
 #include "tgaimage.h"
 #include "model.h"
 #include "render.h"
 #include "Trispec.h"
 #include "lighting.h"
 #include "dbuffer.h"
+#include "world.h"
 
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
@@ -18,7 +20,6 @@ const TGAColor BLUE     = TGAColor(0, 0, 255, 255);
 int main(){
 
     TGAImage image(800, 800, TGAImage::RGB);
-
     Model mdl("../res/head.obj");
     mdl.readmodel();
     mdl.normalize(false);
