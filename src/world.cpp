@@ -27,6 +27,7 @@ void World::addLighting(Light& light){
 
 }
 
+
 void World::removeModel(int indx){
     if(indx >= 0 && indx < number_of_models){
         models.erase( models.begin() + indx );
@@ -63,5 +64,4 @@ Camera& World::getCamera(int indx) const{
     assert( indx >= 0 && indx < number_of_cameras && "Camera index out of range");
     return cameras[indx];
 }
-
 

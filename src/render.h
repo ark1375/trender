@@ -13,6 +13,7 @@
 #include "../lib/gmtl/VecOps.h"
 #include "../lib/gmtl/MatrixOps.h"
 #include "../lib/gmtl/TriOps.h"
+
 class Renderer{
 public:
     static void drawLine(const gmtl::Point3f& , const gmtl::Point3f&, TGAImage&, const TGAColor&);
