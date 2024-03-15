@@ -2,7 +2,7 @@
 
 #include "tgaimage.h"
 #include "model.h"
-#include "render.h"
+#include "renderer.h"
 #include "Trispec.h"
 #include "lighting.h"
 #include "dbuffer.h"
@@ -21,16 +21,17 @@ int main(){
 
     TGAImage image(800, 800, TGAImage::RGB);
     Model mdl("../res/head.obj");
-    mdl.readmodel();
-    mdl.normalize(false);
-    DepthBuffer dpb(800,800);
-    dpb.calcDepthBuffer(mdl);
-    for (int i = 0; i < 800 ; i++)
-        for (int j = 0 ; j < 800 ; j++){
-            int dval = dpb.get_image_data(i,j);
-            TGAColor cl (dval,dval,dval, 255);
-            image.set(i , j , cl);
-        }
+    // mdl.readmodel();
+    // mdl.normalize(false);
+    // DepthBuffer dpb(800,800);
+    // dpb.calcDepthBuffer(mdl);
+    // for (int i = 0; i < 800 ; i++)
+    //     for (int j = 0 ; j < 800 ; j++){
+    //         int dval = dpb.get_image_data(i,j);
+    //         TGAColor cl (dval,dval,dval, 255);
+    //         image.set(i , j , cl);
+    //     }
+    // std::vector<World> wlds;
     // Direct_Light dl(gmtl::Vec3f{0,0,1});
     // dl.normalize();
 

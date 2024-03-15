@@ -16,6 +16,7 @@ class Model{
 private:
     std::vector<gmtl::Point3f> model_vertecies;
     std::vector<Trious> model_faces;
+    std::vector<Trispec_f> triangle_buffer;
     
     gmtl::Point3f centeroid;
     gmtl::Point3f maxpoint;
@@ -39,7 +40,10 @@ public:
     void translate(gmtl::Vec3f);
     void transform(gmtl::Matrix33f);
     void normalize(bool=true);
-    
+
+    void create_triangle_buffer(gmtl::Matrix33f);
+    void clear_triangle_buffer(gmtl::Matrix33f);
+    void get_triangle_buffer(int);
 
     int getNumberOfFaces() const;
     int getNumberOfVertices() const;

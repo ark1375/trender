@@ -24,6 +24,14 @@ public:
 private:
     gmtl::Point3f position;
     gmtl::Vec3f direction;
+
+    gmtl::Matrix34f extrinsic;
+    gmtl::Matrix33f intrinsic;
+    
+    float rotation_angle_X;
+    float rotation_angle_Y;
+    float rotation_angle_Z;
+    
     float focallength;
     int width;
     int height;

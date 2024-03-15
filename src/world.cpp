@@ -1,6 +1,23 @@
 #include "world.h"
 #include <cassert>
 
+// World::World(const World& wld){
+
+//     for (int i = 0 ; i < wld.getNumberOfModels() ; i++)
+//         models.push_back(wld.getModel(i));
+
+//     for (int i = 0 ; i < wld.getNumberOfLights() ; i++)
+//         lights.push_back(wld.getLight(i));
+
+//     for (int i = 0 ; i < wld.getNumberOfCameras() ; i++)
+//         cameras.push_back(wld.getCamera(i));
+
+//     number_of_cameras = wld.getNumberOfCameras();
+//     number_of_lights = wld.getNumberOfLights();
+//     number_of_models = wld.getNumberOfModels();
+
+// }
+
 int World::getNumberOfCameras() const{ return number_of_cameras; }
 int World::getNumberOfLights()  const{ return number_of_lights; }
 int World::getNumberOfModels()  const{ return number_of_models; }

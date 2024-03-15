@@ -16,8 +16,8 @@ class World{
 public:
 
     World() = default;
-    World(World&) = default;
-    World(World&&) = default;
+    World(const World&) = default;
+    World& operator=(const World&) = default;
 
     int getNumberOfModels() const;
     int getNumberOfCameras() const;

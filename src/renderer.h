@@ -2,6 +2,7 @@
 #include "model.h"
 #include "lighting.h"
 #include "world.h"
+#include "dbuffer.h"
 
 #include <vector>
 
@@ -34,7 +35,25 @@ public:
 
 private:
 
-    std::vector<World> worlds;
+    DepthBuffer createZbuffer(int,int,World);
+    void rasterize(int,int,TGAImage&, DepthBuffer&);
+    
+    void draw_model_mesh(Model&, TGAImage&, DepthBuffer&);
+    
+    template <typename T>
+    void draw_triangle(Trispec<T>&, TGAImage&, DepthBuffer&);
+//______________________________________________________________________________
+
+    void draw_wireframe_model(Model&, TGAImage&);
+    
+    template <typename T>
+    void draw_wireframe_triangle(Trispec<T>, TGAImage&);
+    
+    template <typename T>
+    void draw_wireframe_line(gmtl::Point<T,3>, gmtl::Point<T,3>, TGAImage&);
+    
+    
+    std::vector<World> worlds{};
     int number_of_worlds = 0;
 
 };
