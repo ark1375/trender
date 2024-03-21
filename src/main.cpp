@@ -7,6 +7,7 @@
 #include "lighting.h"
 #include "dbuffer.h"
 #include "world.h"
+#include "camera.h"
 
 #include "../lib/gmtl/Tri.h"
 #include "../lib/gmtl/Point.h"
@@ -17,10 +18,18 @@ const TGAColor RED      = TGAColor(255, 0, 0, 255);
 const TGAColor GREEN    = TGAColor(0, 255, 0, 255);
 const TGAColor BLUE     = TGAColor(0, 0, 255, 255);
 
+float deg_to_rad(float deg){
+    return deg * M_PI / 180.0;
+}
+
 int main(){
 
     TGAImage image(800, 800, TGAImage::RGB);
     Model mdl("../res/head.obj");
+
+    // gmtl::Vec3f dir{}
+    Camera cm{{0.0,0.0,0.0}, {1.0,1.0,1.0}, 0.2, 1024,1024};
+    std::cout<< cm.getExtrinsic() << std::endl;
     // mdl.readmodel();
     // mdl.normalize(false);
     // DepthBuffer dpb(800,800);

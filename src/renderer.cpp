@@ -1,4 +1,8 @@
 #include "renderer.h"
+
+#include "../lib/gmtl/Matrix.h"
+#include "../lib/gmtl/MatrixOps.h"
+
 #include <cassert>
 
 void Renderer::addWorld(World wld){
@@ -64,6 +68,6 @@ void Renderer::draw_wireframe_model(Model& mdl, TGAImage& image){
 
 }
 
-void Renderer::draw_wireframe(int wrld_indx, int camera_indx, TGAImage&){
+void Renderer::draw_wireframe(int wrld_indx, int camera_indx, TGAImage& image){
 
 }

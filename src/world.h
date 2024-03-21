@@ -7,8 +7,9 @@
 #include "lighting.h"
 #include "camera.h"
 
-using Model_REF = std::reference_wrapper<Model>;
+// using Camera_REF = std::reference_wrapper<Camera>;
 using Camera_REF = std::reference_wrapper<Camera>;
+using Model_REF = std::reference_wrapper<Model>;
 using Light_REF = std::reference_wrapper<Light>;
 
 class World{
