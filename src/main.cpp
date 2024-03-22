@@ -28,8 +28,11 @@ int main(){
     Model mdl("../res/head.obj");
 
     // gmtl::Vec3f dir{}
-    Camera cm{{0.0,0.0,0.0}, {1.0,1.0,1.0}, 0.2, 1024,1024};
+    Camera cm{{0.0,0.0,0.0}, {1,1,1}, 0.2, 1024,1024};
     std::cout<< cm.getExtrinsic() << std::endl;
+    gmtl::Point<float,3> p {1,1,1};
+    cm.transformPoint(p);
+    std::cout << p << std::endl;
     // mdl.readmodel();
     // mdl.normalize(false);
     // DepthBuffer dpb(800,800);

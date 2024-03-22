@@ -17,9 +17,9 @@ public:
     gmtl::Matrix<float , 3 , 4> getExtrinsic() const;
     gmtl::Matrix<float , 3 , 3> getIntrinsic() const;
 
-    // World transform_world(World&);
-    // template< typename T>
-    // void transformPoint(gmtl::Point<T,3>&);
+    // // World transform_world(World&);
+    template< typename T>
+    void transformPoint(gmtl::Point<T,3>&);
 
 private:
 
@@ -29,9 +29,9 @@ private:
     gmtl::Matrix34f extrinsic;
     gmtl::Matrix33f intrinsic;
     
-    float rotation_angle_XY;
-    float rotation_angle_YZ;
-    float rotation_angle_XZ;
+    float rotation_angle_YX;
+    float rotation_angle_ZY;
+    float rotation_angle_ZX;
     
     float focallength;
     int width;

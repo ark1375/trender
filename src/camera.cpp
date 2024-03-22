@@ -3,6 +3,8 @@
 #include "../lib/gmtl/Matrix.h"
 #include "../lib/gmtl/MatrixOps.h"
 #include "../lib/gmtl/Output.h"
+#include "../lib/gmtl/PlaneOps.h"
+#include "../lib/gmtl/Xforms.h"
 
 #include <iostream>
 #include <cmath>
@@ -25,40 +27,39 @@ void Camera::calc_mats(){
         0,      0,       1
     );
 
-    std::cout << direction << std::endl;
-
-    rotation_angle_XY = acos(
-        direction[0] / sqrt( direction[0] * direction[0] + direction[1]*direction[1])
+    rotation_angle_YX = acos(
+        direction[0] / sqrt(direction[0] * direction[0] + direction[1] * direction[1])
     );
-    rotation_angle_YZ = acos(
-        direction[1] / sqrt( direction[1] * direction[1] + direction[2]*direction[2])
+    rotation_angle_ZY = acos(
+        direction[1] / sqrt(direction[2] * direction[2] + direction[1] * direction[1])
     );
-    rotation_angle_XZ = acos(
-        direction[0] / sqrt( direction[2] * direction[2] + direction[0]*direction[0])
+    rotation_angle_ZX = acos(
+        direction[0] / sqrt(direction[0] * direction[0] + direction[2] * direction[2])
     );
 
 
-    gmtl::Matrix33f rot_xy;
-    gmtl::Matrix33f rot_yz;
-    gmtl::Matrix33f rot_xz;
+    gmtl::Matrix33f rot_yx;
+    gmtl::Matrix33f rot_zy;
+    gmtl::Matrix33f rot_zx;
 
-    rot_xz.set(
-        cos(rotation_angle_XZ) , -sin(rotation_angle_XZ), 0,
-        sin(rotation_angle_XZ) ,  cos(rotation_angle_XZ), 0,
+    rot_yx.set(
+        cos(rotation_angle_YX) , -sin(rotation_angle_YX), 0,
+        sin(rotation_angle_YX) ,  cos(rotation_angle_YX), 0,
         0, 0, 1
     );
-    rot_yz.set(
-        cos(rotation_angle_YZ), 0, -sin(rotation_angle_YZ),
+    rot_zx.set(
+        cos(rotation_angle_ZX), 0, -sin(rotation_angle_ZX),
         0, 1, 0,
-        sin(rotation_angle_YZ), 0, cos(rotation_angle_YZ)
+        sin(rotation_angle_ZX), 0, cos(rotation_angle_ZX)
     );
-    rot_xy.set(
+    rot_zy.set(
         1 , 0 , 0,
-        0, cos(rotation_angle_XY), -sin(rotation_angle_XY),
-        0, sin(rotation_angle_XY), cos(rotation_angle_XY)
+        0, cos(rotation_angle_ZY), -sin(rotation_angle_ZY),
+        0, sin(rotation_angle_ZY), cos(rotation_angle_ZY)
     );
-    
-    gmtl::Matrix33f rot_mat = rot_xy * rot_xz * rot_yz;
+
+    gmtl::Matrix33f rot_mat = rot_yx * rot_zx * rot_zy;
+    // gmtl::mult(rot_mat, (float)-1.0);
 
     Camera::extrinsic.set(
         rot_mat[0][0], rot_mat[0][1], rot_mat[0][2], position[0],
@@ -75,3 +76,15 @@ gmtl::Matrix33f Camera::getIntrinsic() const{
     return intrinsic;
 }
 
+template< typename T>
+void Camera::transformPoint(gmtl::Point<T,3>& point){
+    
+    gmtl::Point<T,4> temp{point[0],point[1],point[2], 1};
+    temp = extrinsic * temp;
+    gmtl::Point<T,3> trans_ext { temp[0], temp[1], temp[2] };
+    // std::cout << temp << std::endl;
+    trans_ext = intrinsic * trans_ext;
+    point = trans_ext;
+}
+
+template void Camera::transformPoint<float>(gmtl::Point<float,3>&);
